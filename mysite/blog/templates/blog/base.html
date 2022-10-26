@@ -1,12 +1,77 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% comment %} Bootstrap {% endcomment %}
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css"
+      integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu"
+      crossorigin="anonymous"
+    />
+    {% comment %} Medium Editor {% endcomment %}
+    <script src="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/js/medium-editor.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/css/medium-editor.min.css"
+      type="text/css"
+      media="screen"
+      charset="utf-8"
+    />
+    {% comment %} Custom CSS {% endcomment %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    {% comment %} Font styles {% endcomment %}
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&family=Teko:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
     <title>Base</title>
-</head>
-<body>
-    
-</body>
+  </head>
+  <body>
+    {% comment %} navbar {% endcomment %}
+    <nav class="navbar navbar-default navfont custom-navbar">
+      <div class="container">
+        <ul class="nav navbar-nav">
+          <li>
+            <a href="{% url 'post_list' %}" class="navbar-brand bigbrand"
+              >The Blog</a
+            >
+          </li>
+          <li><a href="{% url 'about' %}" class="navbar-link">About</a></li>
+          <li>
+            <a href="https://www.github.com" class="navbar-link">Github</a>
+          </li>
+          <li>
+            <a href="https://www.linkedin.com" class="navbar-link">LinkedIn</a>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          {% if user.is_authenticated %}
+          <li><a href="{% url 'post_new' %}">Post a Blog</a></li>
+          <li><a href="{% url 'post_draft_list' %}">Drafts</a></li>
+          <li><a href="{% url 'logout' %}">Log Out</a></li>
+          <li><a>Welcome {{user.username}}</a></li>
+          {% else %}
+          <li>
+            <a href="{% url 'login' %}">
+              <span class="glyphicon glyphicon-user"></span>
+            </a>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+    </nav>
+    <div class="content container">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="blog_posts">
+            {% block content %} {% endblock content %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
