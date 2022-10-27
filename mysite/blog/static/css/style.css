@@ -1,8 +1,11 @@
 .navfont {
-    font-family: 'Roboto Mono', monospace;
-    font-size: 1.5em;
+  font-family: "Roboto Mono", monospace;
+  font-size: 1.5em;
 }
 
 .bigbrand {
-    font-size: 1.8em;
+  font-size: 1.6em;
+}
+.center-stage {
+  margin: auto;
 }
