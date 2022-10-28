@@ -2,13 +2,12 @@
 <div class="center-stage">
   {% for post in post_list %}
   <div class="jumbotron post">
-    <h1><a href="{% url 'post_detail' post.id %}">{{post.titile}}</a></h1>
+    <h1><a href="{% url 'post_detail' post.id %}">{{post.title}}</a></h1>
     <div class="date">
-        <p>Published on: {{post.published_date | date:"D M Y"}}</p>
+      <p>Published on: {{post.published_date | date:"y-m-d"}}</p>
     </div>
-    <a href="{% url 'post_detail' post.id %}">Comments: {{post.approved_comment.count}}</a>
+    <a href="{% url 'post_detail' post.id %}">Comments: {{post.approve_comments|length}}</a>
   </div>
   {% endfor %}
 </div>
 {% endblock content %}
- 
